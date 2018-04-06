@@ -58,12 +58,33 @@ public class SegreteriaStudentiController {
 
     @FXML
     void handleCercaCorsi(ActionEvent event) {
+    	
+		txtResult.clear();
 
+		try {
+
+			int matricola = Integer.parseInt(txtMatricola.getText());
+			Studente s = model.getStudenteByMatricola(matricola);
+			if (s==null) {
+				txtResult.setText("Matricola non presente nel database");
+				return;
+			}
+			
+			List<Corso> l = model.getCorsiFromMatricola(matricola);
+			for(Corso c: l)
+				txtResult.appendText(c.toString());
+				
+
+		} catch (NumberFormatException e) {
+			txtResult.setText("Inserire matricola nel formato corretto");
+		} catch (RuntimeException e) {
+			txtResult.setText("ERRORE DI CONNESSIONE AL DATABASE!");
+		}
     }
 
     @FXML
     void handleCompleta(ActionEvent event) {
-		//txtResult.clear();
+		txtResult.clear();
 		txtNome.clear();
 		txtCognome.clear();
 
@@ -88,8 +109,19 @@ public class SegreteriaStudentiController {
     }
 
     @FXML
-    void handleIscritti(ActionEvent event) {
+    void handleIscritti(ActionEvent event) throws Exception {
+    	
+		txtResult.clear();
+		
+		try {
 
+			List<Studente> l = model.getStudentiFromCorso(comboBox.getPromptText());
+			for(Studente s: l)
+				txtResult.appendText(s.toString());
+
+		} catch (RuntimeException e) {
+			txtResult.setText("ERRORE DI CONNESSIONE AL DATABASE!");
+		}
     }
 
     @FXML
@@ -99,6 +131,10 @@ public class SegreteriaStudentiController {
 
     @FXML
     void handleReset(ActionEvent event) {
+		txtMatricola.clear();
+    		txtNome.clear();
+		txtCognome.clear();
+		txtResult.clear();
 
     }
 

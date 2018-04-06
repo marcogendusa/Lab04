@@ -42,12 +42,9 @@ public class Model {
 		throw new Exception("Nessun corso selezionato");
 	}
 	
-	public List<Corso> getCorsiFromMatricola(int matricola) throws Exception {
+	public List<Corso> getCorsiFromMatricola(int matricola) {
 		
 		Studente studente = studenteDAO.getStudente(matricola);
-		
-		if(studente == null)
-			throw new Exception("Matricola non presente nel database");
 		
 		this.studenti = studenteDAO.getTuttiGliStudenti();
 		
