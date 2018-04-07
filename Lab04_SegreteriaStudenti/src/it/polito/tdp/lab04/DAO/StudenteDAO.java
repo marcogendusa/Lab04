@@ -81,10 +81,10 @@ public class StudenteDAO {
 	 * Non so se è giusto ma baro come ha barato in CorsoDAO
 	 */
 	
-	public void getCorsiStudente(Studente studente) throws Exception {
+	public void getCorsiStudente(Studente studente) {
 		final String sql = "SELECT *" +
 				"FROM corso AS c, iscrizione AS i" +
-				"WHERE c.codins=i.codins AND i.matricola='?'";
+				"WHERE c.codins=i.codins AND i.matricola=?";
 		
 		try {
 			Connection conn = ConnectDB.getConnection();
@@ -98,10 +98,6 @@ public class StudenteDAO {
 				studente.aggiungiCorso(c);
 			}
 			
-			if(studente.getListaCorsi().size()==0) {
-				throw new Exception("Studente non iscritto ad alcun corso");
-			}
-
 			conn.close();
 
 		} catch (SQLException e) {

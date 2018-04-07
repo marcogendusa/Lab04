@@ -109,15 +109,16 @@ public class SegreteriaStudentiController {
     }
 
     @FXML
-    void handleIscritti(ActionEvent event) throws Exception {
+    void handleIscritti(ActionEvent event) {
     	
 		txtResult.clear();
 		
 		try {
-
-			List<Studente> l = model.getStudentiFromCorso(comboBox.getPromptText());
+			
+			List<Studente> l = model.getStudentiFromCorso(comboBox.getSelectionModel().getSelectedItem().getCodins());
 			for(Studente s: l)
 				txtResult.appendText(s.toString());
+				
 
 		} catch (RuntimeException e) {
 			txtResult.setText("ERRORE DI CONNESSIONE AL DATABASE!");
@@ -135,7 +136,6 @@ public class SegreteriaStudentiController {
     		txtNome.clear();
 		txtCognome.clear();
 		txtResult.clear();
-
     }
 
     @FXML

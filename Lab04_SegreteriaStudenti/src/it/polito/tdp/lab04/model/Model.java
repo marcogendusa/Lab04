@@ -30,21 +30,25 @@ public class Model {
 		return studente;
 	}
 
-	public List<Studente> getStudentiFromCorso(String codins) throws Exception {
+	public List<Studente> getStudentiFromCorso(String codins) {
 
 		this.corsi = corsoDAO.getTuttiICorsi();
+		List<Studente> l = new LinkedList<Studente>();
+		l = null;
 
 		for(Corso c: this.corsi) {
-			if(c.getCodins().equals(codins))
-				return c.getListaStudenti();
+			if(c.getCodins().equals(codins)) {
+				l = c.getListaStudenti();
+				break;
+			}
 		}
 
-		throw new Exception("Nessun corso selezionato");
+		return l;
 	}
 	
 	public List<Corso> getCorsiFromMatricola(int matricola) {
 		
-		Studente studente = studenteDAO.getStudente(matricola);
+		//Studente studente = studenteDAO.getStudente(matricola);
 		
 		this.studenti = studenteDAO.getTuttiGliStudenti();
 		
@@ -56,7 +60,6 @@ public class Model {
 		return null;
 		
 	}
-
 
 
 }

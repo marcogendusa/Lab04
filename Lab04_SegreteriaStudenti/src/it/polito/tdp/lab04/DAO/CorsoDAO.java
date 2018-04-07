@@ -90,7 +90,7 @@ public class CorsoDAO {
 		
 		final String sql = "SELECT *" +
 				"FROM studente AS s, iscrizione AS i" +
-				"WHERE s.matricola=i.matricola AND i.codins='?'";
+				"WHERE s.matricola=i.matricola AND i.codins = ?";
 		
 		try {
 			Connection conn = ConnectDB.getConnection();

@@ -9,8 +9,19 @@ public class TestDB {
 		 */
 		
 		CorsoDAO cdao = new CorsoDAO();
-		cdao.getTuttiICorsi();
-
+		StudenteDAO sdao = new StudenteDAO();
+		
+		//cdao.getTuttiICorsi(); //ok
+		
+		//System.out.println(sdao.getStudente(146101).toString()); //ok
+		
+		
+		try {
+			sdao.getCorsiStudente(sdao.getStudente(146101));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }
