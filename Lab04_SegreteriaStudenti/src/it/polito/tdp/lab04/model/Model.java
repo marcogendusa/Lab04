@@ -34,16 +34,16 @@ public class Model {
 
 		this.corsi = corsoDAO.getTuttiICorsi();
 		List<Studente> l = new LinkedList<Studente>();
-		l = null;
 
 		for(Corso c: this.corsi) {
 			if(c.getCodins().equals(codins)) {
+				this.corsoDAO.getStudentiIscrittiAlCorso(c);
 				l = c.getListaStudenti();
-				break;
+				return l;
 			}
 		}
 
-		return l;
+		return null;
 	}
 	
 	public List<Corso> getCorsiFromMatricola(int matricola) {
@@ -53,12 +53,13 @@ public class Model {
 		this.studenti = studenteDAO.getTuttiGliStudenti();
 		
 		for(Studente s: this.studenti) {
-			if(matricola == s.getMatricola())
+			if(matricola == s.getMatricola()) {
+				this.studenteDAO.getCorsiStudente(s);
 				return s.getListaCorsi();
+			}
 		}
 
 		return null;
-		
 	}
 
 

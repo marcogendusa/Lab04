@@ -71,6 +71,11 @@ public class SegreteriaStudentiController {
 			}
 			
 			List<Corso> l = model.getCorsiFromMatricola(matricola);
+			
+			if(l.size()==0)
+				txtResult.appendText("Lo studente non risulta iscritto a nessun corso");
+
+			
 			for(Corso c: l)
 				txtResult.appendText(c.toString());
 				
@@ -116,6 +121,11 @@ public class SegreteriaStudentiController {
 		try {
 			
 			List<Studente> l = model.getStudentiFromCorso(comboBox.getSelectionModel().getSelectedItem().getCodins());
+			// la lista è vuota, perchè?
+			
+			if(l.size()==0)
+				txtResult.appendText("Il corso non risulta avere nessuno studente iscritto");
+			
 			for(Studente s: l)
 				txtResult.appendText(s.toString());
 				
