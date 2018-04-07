@@ -77,7 +77,7 @@ public class SegreteriaStudentiController {
 
 			
 			for(Corso c: l)
-				txtResult.appendText(c.toString());
+				txtResult.appendText(c.toString()+"\n");
 				
 
 		} catch (NumberFormatException e) {
@@ -127,7 +127,7 @@ public class SegreteriaStudentiController {
 				txtResult.appendText("Il corso non risulta avere nessuno studente iscritto");
 			
 			for(Studente s: l)
-				txtResult.appendText(s.toString());
+				txtResult.appendText(s.toString()+"\n");
 				
 
 		} catch (RuntimeException e) {

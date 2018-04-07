@@ -82,9 +82,10 @@ public class StudenteDAO {
 	 */
 	
 	public void getCorsiStudente(Studente studente) {
-		final String sql = "SELECT *" +
-				"FROM corso AS c, iscrizione AS i" +
+		final String sql = "SELECT * " +
+				"FROM corso AS c, iscrizione AS i " +
 				"WHERE c.codins=i.codins AND i.matricola=?";
+
 		
 		try {
 			Connection conn = ConnectDB.getConnection();

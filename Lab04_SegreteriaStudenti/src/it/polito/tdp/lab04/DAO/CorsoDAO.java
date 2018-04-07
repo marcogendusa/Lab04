@@ -88,8 +88,8 @@ public class CorsoDAO {
 	 */
 	public void getStudentiIscrittiAlCorso(Corso corso) {
 		
-		final String sql = "SELECT *" +
-				"FROM studente AS s, iscrizione AS i" +
+		final String sql = "SELECT * " +
+				"FROM studente AS s, iscrizione AS i " +
 				"WHERE s.matricola=i.matricola AND i.codins = ?";
 		
 		try {
